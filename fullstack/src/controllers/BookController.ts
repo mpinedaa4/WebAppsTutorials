@@ -14,7 +14,7 @@ export class BookController {
   static show(req: Request, res: Response): void {
     const viewData: { [key: string]: any } = {};
     viewData["title"] = "Book Details";
-    viewData["book"] = Book.findById(books, parseInt(req.params.id));
+    viewData["book"] = Book.findById(books, parseInt(req.params.id as string));
 
     res.render('books/show', {viewData: viewData});
   }
