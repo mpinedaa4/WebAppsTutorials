@@ -2,6 +2,10 @@
 import { BookService } from '@/services/BookService.js';
 
 const books = BookService.getBooks();
+
+function deleteLastBook() {
+    BookService.deleteLastBook();
+}
 </script>
 
 <template>
@@ -12,6 +16,11 @@ const books = BookService.getBooks();
           to="/books/create"
           class="inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded hover:bg-blue-700 transition"
           >+ Add Book</RouterLink
+        >
+        <button
+          class="inline-block bg-red-600 text-white font-semibold px-5 py-2 ml-4 rounded hover:bg-blue-700 transition"
+          @click="deleteLastBook"
+          >Delete Book</button
         >
       </div>
 

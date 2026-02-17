@@ -16,4 +16,10 @@ export class BookService {
     useBookStore().books.push({ id, ...book });
   }
 
+  static deleteLastBook(): void {
+    const store = useBookStore();
+    if (store.books.length > 0){
+        store.books.pop();
+    }
+  }
 }
