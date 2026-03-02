@@ -1,23 +1,14 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import BookReviews from '@/components/BookReviews.vue';
 import { BookService } from '@/services/BookService.js';
-import { useRoute } from 'vue-router';
+import { CurrencyFormatter } from '@/utils/CurrencyFormatter';
 
 const route = useRoute();
 const bookId = Number(route.params.id);
 const book = BookService.getBookById(bookId);
 
 // functions
-function formatToCOP(price: number): string {
-  const formatter = new Intl.NumberFormat('es-CO', {
-    style: 'currency',
-    currency: 'COP',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-
-  return formatter.format(price).replace(/^\s*\$\s?/, '');
-}
 
 </script>
 
@@ -66,7 +57,7 @@ function formatToCOP(price: number): string {
                 </div>
                 <div class="flex justify-between">
                   <span class="text-gray-600">Price:</span>
-                  <span class="font-medium">${{ formatToCOP(book.price) }} COP</span>
+                  <span class="font-medium">${{ CurrencyFormatter.formatToCOP(book.price) }} COP</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="text-gray-600">Stock:</span>
